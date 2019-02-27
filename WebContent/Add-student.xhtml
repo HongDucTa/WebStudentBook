@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Add a student</title>
+</head>
+<body style="background:linear-gradient(to right,grey,white,grey);text-align:center;">
+	<h1 style="color:red;">Add a student</h1>
+	<div id="content">
+		<ui:insert name="content">
+			<h:form>
+			<h:inputText id="firstName" value="#{student.firstName}"
+			p:placeholder="First name" required="true" requiredMessage="Fill the first name please." validatorMessage="First name should contain at least 2 letters">
+				<f:validateLength minimum="2"/>
+			</h:inputText>
+			<br/>
+			<h:message for="firstName" style="color:red"/>
+			<br/>
+			<h:inputText id="lastName" value="#{student.lastName}"
+			p:placeholder="Last name" required="true" requiredMessage="Fill the last name please." validatorMessage="Last name should contain at least 2 letters">
+				<f:validateLength minimum="2"/>
+			</h:inputText>
+			<br/>
+			<h:message for="lastName" style="color:red"/>
+			<br/>
+			<h:inputText id="email" value="#{student.email}"
+			p:placeholder="Email" required="false" validatorMessage="Email should have a valid format">
+				<f:validateRegex pattern="^$|^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</h:inputText>
+			<br/>
+			<h:message for="email" style="color:red"/>
+			<br/>
+			<h:commandButton value="Add" action="#{studentManager.addStudent(student)}" style="margin-top:5px;margin-bottom:5px;"/>			
+			</h:form>
+		</ui:insert>
+		<h:form>
+			<h:commandButton value="Cancel" action="List-students.xhtml"/>
+		</h:form>
+	</div>
+</body>
+</html>
